@@ -1,38 +1,55 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import Button from '@/components/atoms/Button';
-import ContactList from '@/components/organisms/ContactList';
-import SkeletonLoader from '@/components/molecules/SkeletonLoader';
-import ErrorState from '@/components/molecules/ErrorState';
-import EmptyState from '@/components/molecules/EmptyState';
-import SearchBar from '@/components/molecules/SearchBar';
-import { contactService } from '@/services/api/contactService';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import FilterBuilder from "@/components/molecules/FilterBuilder";
+import { contactService } from "@/services/api/contactService";
+import SkeletonLoader from "@/components/molecules/SkeletonLoader";
+import EmptyState from "@/components/molecules/EmptyState";
+import SearchBar from "@/components/molecules/SearchBar";
+import ErrorState from "@/components/molecules/ErrorState";
+import ContactList from "@/components/organisms/ContactList";
+import Button from "@/components/atoms/Button";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
-  const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [filters, setFilters] = useState([]);
+  const [showFilterBuilder, setShowFilterBuilder] = useState(false);
   useEffect(() => {
     loadContacts();
   }, []);
 
-  useEffect(() => {
-    // Filter contacts based on search query
-    if (searchQuery.trim() === '') {
-      setFilteredContacts(contacts);
-    } else {
-      const filtered = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.company.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredContacts(filtered);
+useEffect(() => {
+    applySearchAndFilters();
+  }, [contacts, searchQuery, filters]);
+
+  const applySearchAndFilters = async () => {
+    let result = [...contacts];
+
+    // Apply filters first
+    if (filters.length > 0) {
+      try {
+        result = await contactService.filter(filters);
+      } catch (error) {
+        toast.error('Error applying filters');
+        result = [...contacts];
+      }
     }
-  }, [contacts, searchQuery]);
+
+// Then apply search query
+    if (searchQuery.trim() !== '') {
+      result = result.filter(contact =>
+        contact?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact?.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        contact?.company?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredContacts(result);
+  };
 
   const loadContacts = async () => {
     setLoading(true);
@@ -54,14 +71,20 @@ const Contacts = () => {
     setSearchQuery(query);
   };
 
-  const handleDeleteContact = async (contact) => {
+const handleDeleteContact = async (contact) => {
+    if (!contact?.name || !contact?.Id) {
+      toast.error('Invalid contact data');
+      return;
+    }
+    
     if (!confirm(`Are you sure you want to delete ${contact.name}?`)) return;
     
     try {
       await contactService.delete(contact.Id);
-      setContacts(contacts.filter(c => c.Id !== contact.Id));
+      setContacts(prevContacts => prevContacts.filter(c => c.Id !== contact.Id));
       toast.success('Contact deleted successfully');
     } catch (err) {
+      console.error('Delete contact error:', err);
       toast.error('Failed to delete contact');
     }
   };
@@ -114,13 +137,24 @@ const Contacts = () => {
         </Button>
       </div>
 
-      {/* Search and Filters */}
+{/* Search and Filters */}
       <div className="flex items-center justify-between mb-6">
-        <SearchBar 
-          placeholder="Search contacts..." 
-          onSearch={handleSearch}
-          className="w-auto"
-        />
+        <div className="flex items-center gap-4">
+          <SearchBar 
+            placeholder="Search contacts..." 
+            onSearch={handleSearch}
+            className="w-auto"
+          />
+          <div className="relative">
+            <FilterBuilder
+              type="contacts"
+              filters={filters}
+              onFiltersChange={setFilters}
+              isOpen={showFilterBuilder}
+              onToggle={() => setShowFilterBuilder(!showFilterBuilder)}
+            />
+          </div>
+        </div>
         <div className="flex items-center space-x-2">
           <span className="text-sm text-gray-500">
             {filteredContacts.length} of {contacts.length} contacts
@@ -128,7 +162,7 @@ const Contacts = () => {
         </div>
       </div>
 
-      {/* Content */}
+{/* Content */}
       {filteredContacts.length === 0 && searchQuery === '' ? (
         <EmptyState
           icon="Users"
@@ -141,7 +175,7 @@ const Contacts = () => {
         <EmptyState
           icon="Search"
           title="No contacts found"
-          description={`No contacts match "${searchQuery}"`}
+          description={`No contacts match "${searchQuery}". Try adjusting your search.`}
           actionLabel="Clear Search"
           onAction={() => setSearchQuery('')}
         />

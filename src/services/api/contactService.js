@@ -67,8 +67,55 @@ export const contactService = {
     const lowercaseQuery = query.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(lowercaseQuery) ||
-      contact.email.toLowerCase().includes(lowercaseQuery) ||
+contact.email.toLowerCase().includes(lowercaseQuery) ||
       contact.company.toLowerCase().includes(lowercaseQuery)
     );
+  },
+
+  async filter(filters) {
+    await delay(250);
+    if (!filters || filters.length === 0) {
+      return [...contacts];
+    }
+
+    return contacts.filter(contact => {
+      return filters.every(filter => {
+        const { field, operator, value } = filter;
+        const contactValue = contact[field];
+
+        if (contactValue === undefined || contactValue === null) {
+          return operator === 'isEmpty';
+        }
+
+        switch (operator) {
+          case 'equals':
+            return String(contactValue).toLowerCase() === String(value).toLowerCase();
+          case 'contains':
+            return String(contactValue).toLowerCase().includes(String(value).toLowerCase());
+          case 'startsWith':
+            return String(contactValue).toLowerCase().startsWith(String(value).toLowerCase());
+          case 'endsWith':
+            return String(contactValue).toLowerCase().endsWith(String(value).toLowerCase());
+          case 'isEmpty':
+            return !contactValue || String(contactValue).trim() === '';
+          case 'isNotEmpty':
+            return contactValue && String(contactValue).trim() !== '';
+          case 'greaterThan':
+            return Number(contactValue) > Number(value);
+          case 'lessThan':
+            return Number(contactValue) < Number(value);
+          case 'greaterThanOrEqual':
+            return Number(contactValue) >= Number(value);
+          case 'lessThanOrEqual':
+            return Number(contactValue) <= Number(value);
+          case 'arrayContains':
+            return Array.isArray(contactValue) && contactValue.some(item => 
+              String(item).toLowerCase().includes(String(value).toLowerCase())
+            );
+          default:
+            return true;
+        }
+      });
+    });
   }
 };
