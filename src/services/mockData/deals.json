@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "title": "TechCorp Enterprise License",
+    "value": 125000,
+    "stage": "Negotiation",
+    "contactId": "1",
+    "probability": 75,
+    "expectedClose": "2024-02-15T00:00:00Z",
+    "owner": "John Smith",
+    "createdAt": "2024-01-10T10:00:00Z",
+    "updatedAt": "2024-01-20T14:30:00Z"
+  },
+  {
+    "Id": 2,
+    "title": "InnovatePlus Startup Package",
+    "value": 25000,
+    "stage": "Proposal",
+    "contactId": "2",
+    "probability": 60,
+    "expectedClose": "2024-02-28T00:00:00Z",
+    "owner": "Jane Doe",
+    "createdAt": "2024-01-12T14:15:00Z",
+    "updatedAt": "2024-01-19T16:45:00Z"
+  },
+  {
+    "Id": 3,
+    "title": "Global Ventures Implementation",
+    "value": 85000,
+    "stage": "Qualified",
+    "contactId": "3",
+    "probability": 40,
+    "expectedClose": "2024-03-15T00:00:00Z",
+    "owner": "Mike Wilson",
+    "createdAt": "2024-01-14T11:30:00Z",
+    "updatedAt": "2024-01-18T09:20:00Z"
+  },
+  {
+    "Id": 4,
+    "title": "Smart Systems Integration",
+    "value": 45000,
+    "stage": "Discovery",
+    "contactId": "4",
+    "probability": 25,
+    "expectedClose": "2024-04-01T00:00:00Z",
+    "owner": "Sarah Lee",
+    "createdAt": "2024-01-16T15:45:00Z",
+    "updatedAt": "2024-01-17T12:10:00Z"
+  },
+  {
+    "Id": 5,
+    "title": "Enterprise Tech Marketing Suite",
+    "value": 95000,
+    "stage": "Closed Won",
+    "contactId": "5",
+    "probability": 100,
+    "expectedClose": "2024-01-31T00:00:00Z",
+    "owner": "Tom Brown",
+    "createdAt": "2024-01-05T09:00:00Z",
+    "updatedAt": "2024-01-25T17:30:00Z"
+  }
+]

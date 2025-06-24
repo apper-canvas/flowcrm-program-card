@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "type": "call",
+    "subject": "Initial Discovery Call",
+    "notes": "Discussed current pain points and technical requirements. Very interested in our enterprise solution.",
+    "contactId": "1",
+    "dealId": "1",
+    "date": "2024-01-20T14:22:00Z",
+    "duration": 45,
+    "completed": true
+  },
+  {
+    "Id": 2,
+    "type": "email",
+    "subject": "Product Demo Follow-up",
+    "notes": "Sent detailed pricing proposal and implementation timeline. Awaiting response from technical team.",
+    "contactId": "2",
+    "dealId": "2",
+    "date": "2024-01-19T16:45:00Z",
+    "duration": 0,
+    "completed": true
+  },
+  {
+    "Id": 3,
+    "type": "meeting",
+    "subject": "Stakeholder Presentation",
+    "notes": "Presented to C-level executives. Positive reception, moving to contract review phase.",
+    "contactId": "3",
+    "dealId": "3",
+    "date": "2024-01-18T13:10:00Z",
+    "duration": 90,
+    "completed": true
+  },
+  {
+    "Id": 4,
+    "type": "call",
+    "subject": "Technical Requirements Review",
+    "notes": "Reviewed integration capabilities and security requirements. Need to schedule follow-up with IT team.",
+    "contactId": "4",
+    "dealId": "4",
+    "date": "2024-01-17T15:30:00Z",
+    "duration": 30,
+    "completed": true
+  },
+  {
+    "Id": 5,
+    "type": "meeting",
+    "subject": "Contract Signing",
+    "notes": "Successfully closed the deal! Implementation to begin next week.",
+    "contactId": "5",
+    "dealId": "5",
+    "date": "2024-01-25T17:30:00Z",
+    "duration": 60,
+    "completed": true
+  }
+]

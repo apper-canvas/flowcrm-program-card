@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 1,
+    "title": "Send proposal to TechCorp",
+    "dueDate": "2024-01-22T17:00:00Z",
+    "priority": "high",
+    "assignee": "John Smith",
+    "relatedTo": "Deal #1",
+    "completed": false
+  },
+  {
+    "Id": 2,
+    "title": "Schedule demo with InnovatePlus team",
+    "dueDate": "2024-01-24T12:00:00Z",
+    "priority": "medium",
+    "assignee": "Jane Doe",
+    "relatedTo": "Deal #2",
+    "completed": false
+  },
+  {
+    "Id": 3,
+    "title": "Follow up on Global Ventures contract",
+    "dueDate": "2024-01-23T10:00:00Z",
+    "priority": "high",
+    "assignee": "Mike Wilson",
+    "relatedTo": "Deal #3",
+    "completed": true
+  },
+  {
+    "Id": 4,
+    "title": "Prepare technical documentation for Smart Systems",
+    "dueDate": "2024-01-26T14:00:00Z",
+    "priority": "medium",
+    "assignee": "Sarah Lee",
+    "relatedTo": "Deal #4",
+    "completed": false
+  },
+  {
+    "Id": 5,
+    "title": "Update CRM with recent activity logs",
+    "dueDate": "2024-01-21T18:00:00Z",
+    "priority": "low",
+    "assignee": "Tom Brown",
+    "relatedTo": "General",
+    "completed": false
+  }
+]

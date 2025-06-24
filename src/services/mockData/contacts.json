@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@techcorp.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechCorp Solutions",
+    "title": "VP of Sales",
+    "tags": ["enterprise", "hot-lead"],
+    "createdAt": "2024-01-15T10:30:00Z",
+    "lastActivity": "2024-01-20T14:22:00Z"
+  },
+  {
+    "Id": 2,
+    "name": "Michael Chen",
+    "email": "m.chen@innovateplus.com",
+    "phone": "+1 (555) 234-5678",
+    "company": "InnovatePlus",
+    "title": "CTO",
+    "tags": ["startup", "technical"],
+    "createdAt": "2024-01-10T09:15:00Z",
+    "lastActivity": "2024-01-19T11:45:00Z"
+  },
+  {
+    "Id": 3,
+    "name": "Emily Rodriguez",
+    "email": "emily.r@globalventures.com",
+    "phone": "+1 (555) 345-6789",
+    "company": "Global Ventures LLC",
+    "title": "Director of Operations",
+    "tags": ["decision-maker", "finance"],
+    "createdAt": "2024-01-08T16:20:00Z",
+    "lastActivity": "2024-01-18T13:10:00Z"
+  },
+  {
+    "Id": 4,
+    "name": "David Kim",
+    "email": "d.kim@smartsystems.io",
+    "phone": "+1 (555) 456-7890",
+    "company": "Smart Systems Inc",
+    "title": "Product Manager",
+    "tags": ["product-focused", "mid-market"],
+    "createdAt": "2024-01-05T12:45:00Z",
+    "lastActivity": "2024-01-17T15:30:00Z"
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Thompson",
+    "email": "lisa.thompson@enterprisetech.com",
+    "phone": "+1 (555) 567-8901",
+    "company": "Enterprise Tech Group",
+    "title": "Chief Marketing Officer",
+    "tags": ["enterprise", "marketing"],
+    "createdAt": "2024-01-03T08:30:00Z",
+    "lastActivity": "2024-01-16T10:15:00Z"
+  }
+]
